@@ -97,13 +97,22 @@ const Profile = () => {
           }}
         >
           <Image
-            style={{ height: 100, width: 100 }}
+            style={{ height: 100, width: 300 }}
+            resizeMode='contain'
             source={require('../assets/icon.png')}
           />
         </View>
         <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
           {/* info */}
-          <Text>User Info</Text>
+          <Text
+            style={{
+              fontSize: 24,
+              fontWeight: 'bold',
+              marginBottom: 20,
+            }}
+          >
+            User Info
+          </Text>
           <View style={{ flexDirection: 'row' }}>
             {profile.image ? (
               <Image
@@ -138,8 +147,8 @@ const Profile = () => {
                   padding: 10,
                   borderWidth: 1,
                   borderColor: '#3f554d',
+                  justifyContent: 'center',
                 }}
-                // title='Pick an image from camera roll'
                 onPress={selectImage}
               >
                 <Text
@@ -159,8 +168,8 @@ const Profile = () => {
                   padding: 10,
                   borderWidth: 1,
                   borderColor: '#83918c',
+                  justifyContent: 'center',
                 }}
-                title='Pick an image from camera roll'
                 onPress={resetImage}
               >
                 <Text
