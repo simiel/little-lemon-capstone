@@ -128,8 +128,9 @@ const Home = ({ navigation }) => {
         <Image
           style={{
             height: 100,
-            width: 100,
+            width: 300,
           }}
+          resizeMode='contain'
           source={require('../assets/icon.png')}
           accessible={true}
           accessibilityLabel={'Little Lemon Logo'}
