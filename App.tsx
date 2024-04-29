@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Onboarding from './screens/Onboarding';
 import useAuthStore from './contexts/AuthContext';
 import Home from './screens/Home';
+import Profile from './screens/Profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,7 +15,10 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         {onboarded ? (
-          <Stack.Screen name='Home' component={Home} />
+          <>
+            <Stack.Screen name='Home' component={Home} />
+            <Stack.Screen name='Profile' component={Profile} />
+          </>
         ) : (
           <Stack.Screen name='Onboarding' component={Onboarding} />
         )}

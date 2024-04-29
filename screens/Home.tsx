@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import useAuthStore from '../contexts/AuthContext';
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const { onboarded, toggleOnboarding } = useAuthStore();
   return (
     <View>
@@ -17,7 +17,7 @@ const Home = () => {
           marginTop: 'auto',
         }}
         onPress={() => {
-          toggleOnboarding();
+          navigation.navigate('Profile');
         }}
       >
         <Text
