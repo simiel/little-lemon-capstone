@@ -1,21 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
 import {
-  Image,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
   View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  TextInput,
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React, { useState } from 'react';
+import useAuthStore from '../contexts/AuthContext';
 
-const Stack = createNativeStackNavigator();
-
-export function Onboarding() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+const Onboarding = () => {
+  const { onboarded, toggleOnboarding } = useAuthStore();
+  const [name, setName] = useState<any>('');
+  const [email, setEmail] = useState<any>('');
 
   return (
     <View style={styles.container}>
@@ -29,7 +26,7 @@ export function Onboarding() {
       >
         <Image
           style={{ height: 100, width: 100 }}
-          source={require('./assets/icon.png')}
+          source={require('../assets/icon.png')}
         />
         <Text
           style={{
@@ -61,7 +58,7 @@ export function Onboarding() {
             width: '100%',
             borderRadius: 5,
           }}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e: any) => setName(e.target.value)}
           value={name}
         />
         <Text
@@ -82,17 +79,40 @@ export function Onboarding() {
             width: '100%',
             borderRadius: 5,
           }}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e: any) => setEmail(e.target.value)}
           value={email}
         />
 
         {/* next button */}
         <TouchableOpacity
           style={{
+            backgroundColor: 'black',
+            padding: 10,
+            borderRadius: 5,
+            width: '40%',
+            alignSelf: 'flex-end',
+            marginTop: 'auto',
+          }}
+          onPress={() => {
+            toggleOnboarding();
+          }}
+        >
+          <Text
+            style={{
+              color: 'white',
+              textAlign: 'center',
+              fontSize: 18,
+              fontWeight: '500',
+            }}
+          >
+            Toggle
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
             backgroundColor: name === '' || email === '' ? 'gray' : 'black',
             padding: 10,
             borderRadius: 5,
-            marginTop: 20,
             width: '40%',
             alignSelf: 'flex-end',
             marginTop: 'auto',
@@ -113,7 +133,9 @@ export function Onboarding() {
       </View>
     </View>
   );
-}
+};
+
+export default Onboarding;
 
 const styles = StyleSheet.create({
   container: {
@@ -124,26 +146,3 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
-
-function MyStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name='Onboarding'
-        component={Onboarding}
-        options={{ headerShown: false }}
-      />
-      {/* <Stack.Screen name="Notifications" component={NotificationsScreen} />
-      <Stack.Screen name="Profile" component={ProfileScreen} />
-      <Stack.Screen name="Settings" component={SettingsScreen} /> */}
-    </Stack.Navigator>
-  );
-}
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
-  );
-}
