@@ -8,8 +8,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+export function Onboarding() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
@@ -120,3 +124,26 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
+
+function MyStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name='Onboarding'
+        component={Onboarding}
+        options={{ headerShown: false }}
+      />
+      {/* <Stack.Screen name="Notifications" component={NotificationsScreen} />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="Settings" component={SettingsScreen} /> */}
+    </Stack.Navigator>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
+  );
+}
