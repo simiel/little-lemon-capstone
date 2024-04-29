@@ -17,7 +17,11 @@ export default function App() {
         {onboarded ? (
           <>
             <Stack.Screen name='Home' component={Home} />
-            <Stack.Screen name='Profile' component={Profile} />
+            <Stack.Screen
+              name='Profile'
+              component={Profile}
+              options={{ headerShown: false }}
+            />
           </>
         ) : (
           <Stack.Screen name='Onboarding' component={Onboarding} />

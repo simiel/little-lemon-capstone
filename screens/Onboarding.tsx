@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import useAuthStore from '../contexts/AuthContext';
 
 const Onboarding = () => {
-  const { onboarded, toggleOnboarding } = useAuthStore();
+  const { toggleOnboarding, setProfileData } = useAuthStore();
   const [name, setName] = useState<any>('');
   const [email, setEmail] = useState<any>('');
 
@@ -58,7 +58,7 @@ const Onboarding = () => {
             width: '100%',
             borderRadius: 5,
           }}
-          onChange={(e: any) => setName(e.target.value)}
+          onChangeText={(e: any) => setName(e)}
           value={name}
         />
         <Text
@@ -79,7 +79,7 @@ const Onboarding = () => {
             width: '100%',
             borderRadius: 5,
           }}
-          onChange={(e: any) => setEmail(e.target.value)}
+          onChangeText={(e) => setEmail(e)}
           value={email}
         />
 
@@ -118,6 +118,14 @@ const Onboarding = () => {
             marginTop: 'auto',
           }}
           disabled={name === '' || email === ''}
+          onPress={() => {
+            setProfileData({ firstName: name, email });
+            console.log('🚀 ~ Onboarding ~ name, email }:', {
+              firstName: name,
+              email,
+            });
+            toggleOnboarding();
+          }}
         >
           <Text
             style={{

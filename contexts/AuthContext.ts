@@ -7,8 +7,9 @@ const useAuthStore = create<any>()(
     (set) => ({
       onboarded: false,
       toggleOnboarding: () => set((state) => ({ onboarded: !state.onboarded })),
-      profileData: [],
+      profileData: {},
       setProfileData: (data: any) => set({ profileData: data }),
+      logout: () => set({ onboarded: false, profileData: {} }),
     }),
     {
       name: 'auth-storage',
